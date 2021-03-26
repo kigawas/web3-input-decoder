@@ -49,7 +49,7 @@ def detect_constructor_arguments(
         elif "string" == t:
             default_values.append("")
         elif "bool" == t:
-            default_values.append(True)
+            default_values.append(False)
         elif "address" == t:
             default_values.append("0x0000000000000000000000000000000000000000")
         else:
