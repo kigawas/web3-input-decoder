@@ -33,6 +33,42 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
  ('uint256', '_decimals', 6)]]
 ```
 
+## API
+
+- [`decode_constructor`](web3_input_decoder/__init__.py#L19)
+
+  ```
+  Parameters
+  ----------
+  abi: List[dict]
+      Contract ABI
+  tx_input: Union[str, bytes]
+      Transaction input to decode, with or without deployed contract bytecode
+  bytecode: Union[str, bytes], optional
+      Optional deployed contract bytecode. If this is set, `tx_input` should include bytecode
+
+  Returns
+  -------
+  List[Tuple[str, str, Any]]
+      Decoded type-name-value tuple
+  ```
+
+- [`decode_function`](web3_input_decoder/__init__.py#L24)
+
+  ```
+  Parameters
+  ----------
+  abi: List[dict]
+      Contract ABI
+  tx_input: Union[str, bytes]
+      Transaction input to decode
+
+  Returns
+  -------
+  List[Tuple[str, str, Any]]
+      Decoded type-name-value tuples
+  ```
+
 ## Rationale
 
 Existing solutions are not satisfying to me, e.g.:

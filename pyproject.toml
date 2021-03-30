@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "web3-input-decoder"
-version = "0.0.1"
+version = "0.1.0"
 # doc
 authors = ["Weiliang Li <to.be.impressive@gmail.com>"]
 description = "Offline web3 transaction input decoder for functions and constructors"
 license = "MIT"
+maintainers = ["Weiliang Li <to.be.impressive@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/kigawas/web3-input-decoder"
 # tags
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -12,7 +15,6 @@ classifiers = [
   "Natural Language :: English",
   "Programming Language :: Python :: Implementation :: CPython",
   "Operating System :: OS Independent",
-  "Topic :: Security :: Cryptography",
 ]
 keywords = [
   "ethereum",
