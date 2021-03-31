@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import decode_abi
 from eth_utils import function_abi_to_4byte_selector
@@ -20,7 +20,7 @@ def decode_constructor(
     abi: List[dict],
     tx_input: Union[str, bytes],
     bytecode: Union[str, bytes] = None,
-):
+) -> List[Tuple[str, str, Any]]:
     """Decode constructor transaction input
 
     Parameters
@@ -51,7 +51,9 @@ def decode_constructor(
     return [(t, n, v) for t, n, v in zip(types, names, values)]
 
 
-def decode_function(abi: List[dict], tx_input: Union[str, bytes]):
+def decode_function(
+    abi: List[dict], tx_input: Union[str, bytes]
+) -> List[Tuple[str, str, Any]]:
     """Decode function transaction input
 
     Parameters

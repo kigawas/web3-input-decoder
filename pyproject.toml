@@ -20,6 +20,8 @@ keywords = [
   "ethereum",
   "web3",
 ]
+# package data
+include = ["web3_input_decoder/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
