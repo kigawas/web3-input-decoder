@@ -9,6 +9,12 @@
 
 A simple offline web3 transaction input decoder for functions and constructors.
 
+## Install
+
+```bash
+pip install web3-input-decoder
+```
+
 ## Quick start
 
 Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee26b1fc7b01b246ef5e58593cbe9f4a02f7f09bf4a2aa640cf35) and the [USDT contract creator transaction](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code) as an example:
@@ -20,7 +26,7 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
 >>> f = urllib.request.urlopen("https://api.etherscan.io/api?module=contract&action=getabi&address=0xdac17f958d2ee523a2206206994597c13d831ec7")
 >>> TETHER_ABI = json.loads(json.load(f)["result"])
 >>> decode_function(
-        TETHER_ABI,"0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be0611000000000000000000000000000000000000000000000000000000000ecdd350",
+        TETHER_ABI, "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be0611000000000000000000000000000000000000000000000000000000000ecdd350",
     )
 [('address', '_to', '0xf050227be1a7ce587aa83d5013f900dbc3be0611'),
  ('uint256', '_value', 248370000)]
@@ -33,46 +39,51 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
  ('uint256', '_decimals', 6)]]
 ```
 
+You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-quick-start).
+
 ## API
 
 - [`decode_constructor`](web3_input_decoder/__init__.py#L19)
 
+  ```python
+  def decode_constructor(
+      abi: List[dict],
+      tx_input: Union[str, bytes],
+      bytecode: Union[str, bytes] = None,
+  ) -> List[Tuple[str, str, Any]]
   ```
-  Parameters
-  ----------
-  abi: List[dict]
-      Contract ABI
-  tx_input: Union[str, bytes]
-      Transaction input to decode, with or without deployed contract bytecode
-  bytecode: Union[str, bytes], optional
-      Optional deployed contract bytecode. If this is set, `tx_input` should include bytecode
 
-  Returns
-  -------
-  List[Tuple[str, str, Any]]
-      Decoded type-name-value tuple
-  ```
+  #### Parameters:
+
+  - `abi`: Contract ABI
+  - `tx_input`: Transaction input to decode, with or without deployed contract bytecode
+  - `bytecode`: Optional deployed contract bytecode. If this is set, `tx_input` should include bytecode
+
+  #### Returns:
+
+  - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
 - [`decode_function`](web3_input_decoder/__init__.py#L24)
 
+  ```python
+  def decode_function(
+      abi: List[dict], tx_input: Union[str, bytes]
+  ) -> List[Tuple[str, str, Any]]
   ```
-  Parameters
-  ----------
-  abi: List[dict]
-      Contract ABI
-  tx_input: Union[str, bytes]
-      Transaction input to decode
 
-  Returns
-  -------
-  List[Tuple[str, str, Any]]
-      Decoded type-name-value tuples
-  ```
+  #### Parameters:
+
+  - `abi`: Contract ABI
+  - `tx_input`: Transaction input to decode
+
+  #### Returns:
+
+  - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
 ## Rationale
 
 Existing solutions are not satisfying to me, e.g.:
 
-1.  [web3py](https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.Contract.decode_function_input) can only decode function calls and you need to be online to set up a provider first.
+1.  [web3py](https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
 
 2.  [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not actively maintained and it contains several glitches.

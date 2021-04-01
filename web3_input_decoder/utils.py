@@ -1,4 +1,4 @@
-from typing import Any, List, Union
+from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import encode_abi
 
@@ -10,14 +10,14 @@ __all__ = (
 )
 
 
-def get_constructor_type(abi: List[dict]):
+def get_constructor_type(abi: List[dict]) -> dict:
     for type_def in abi:
         if type_def["type"] == "constructor":
             return type_def
     raise NotImplementedError("constructor is not available")
 
 
-def get_types_names(type_def: dict):
+def get_types_names(type_def: dict) -> Tuple[List[str], List[str]]:
     types = [t["type"] for t in type_def]
     names = [t["name"] for t in type_def]
     return types, names
@@ -34,7 +34,7 @@ def hex_to_bytes(data: Union[str, bytes]) -> bytes:
 def detect_constructor_arguments(
     abi: List[dict],
     tx_input_with_bytecode: Union[str, bytes],
-):
+) -> bytes:
     type_def = get_constructor_type(abi)["inputs"]
     types, _ = get_types_names(type_def)
     default_values: List[Any] = []
