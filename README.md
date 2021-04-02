@@ -53,13 +53,13 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
   ) -> List[Tuple[str, str, Any]]
   ```
 
-  #### Parameters:
+  **Parameters**:
 
   - `abi`: Contract ABI
   - `tx_input`: Transaction input to decode, with or without deployed contract bytecode
   - `bytecode`: Optional deployed contract bytecode. If this is set, `tx_input` should include bytecode
 
-  #### Returns:
+  **Returns**:
 
   - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
@@ -71,12 +71,12 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
   ) -> List[Tuple[str, str, Any]]
   ```
 
-  #### Parameters:
+  **Parameters**:
 
   - `abi`: Contract ABI
   - `tx_input`: Transaction input to decode
 
-  #### Returns:
+  **Returns**:
 
   - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
