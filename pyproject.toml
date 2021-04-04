@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "web3-input-decoder"
-version = "0.1.0"
+version = "0.1.1"
 # doc
 authors = ["Weiliang Li <to.be.impressive@gmail.com>"]
-description = "Offline web3 transaction input decoder for functions and constructors"
+description = "A simple offline web3 transaction input decoder for functions and constructors"
 license = "MIT"
 maintainers = ["Weiliang Li <to.be.impressive@gmail.com>"]
 readme = "README.md"
