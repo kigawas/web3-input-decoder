@@ -1,6 +1,7 @@
 import pytest
 
 from web3_input_decoder import decode_constructor, decode_function
+from web3_input_decoder.exceptions import InputDataError
 
 from .data.caller import (
     CALLER_CONSTRUCTOR_CALL_ARGUMENT,
@@ -34,6 +35,9 @@ def test_decode_function():
         ("uint256", "_value", 248370000),
     ]
 
+    with pytest.raises(InputDataError):
+        decode_function(TETHER_ABI, "0xe8078d94")
+
 
 def test_decode_constructor():
     assert (
@@ -66,5 +70,5 @@ def test_decode_constructor():
         == CALLER_CONSTRUCTOR_CALL_ARGUMENT
     )
 
-    with pytest.raises(ValueError):
+    with pytest.raises(InputDataError):
         decode_constructor(EXAMPLE_CONTRACT_ABI, EXAMPLE_CONSTRUCTOR_CALL_INPUT)

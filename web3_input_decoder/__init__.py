@@ -9,6 +9,8 @@ from .utils import (
     get_types_names,
     hex_to_bytes,
 )
+from .exceptions import InputDataError
+
 
 __all__ = (
     "decode_constructor",
@@ -76,6 +78,8 @@ def decode_function(
 
     tx_input = hex_to_bytes(tx_input)
     selector, args = tx_input[:4], tx_input[4:]
+    if selector not in selector_to_type_def:
+        raise InputDataError("Specified method not found in ABI")
 
     type_def = selector_to_type_def[selector]["inputs"]
     types, names = get_types_names(type_def)

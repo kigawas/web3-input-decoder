@@ -1,6 +1,7 @@
 from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import encode_abi
+from .exceptions import InputDataError
 
 __all__ = (
     "get_constructor_type",
@@ -42,7 +43,7 @@ def detect_constructor_arguments(
         if "int" in t:
             default_values.append(0)
         elif "[]" in t:
-            raise ValueError(
+            raise InputDataError(
                 "Unable to detect arguments including array. "
                 "Please provide the bytecode."
             )
