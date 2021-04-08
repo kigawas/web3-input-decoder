@@ -2,6 +2,7 @@ import pytest
 
 from web3_input_decoder import decode_constructor, decode_function
 from web3_input_decoder.exceptions import InputDataError
+from web3_input_decoder.utils import get_constructor_type
 
 from .data.caller import (
     CALLER_CONSTRUCTOR_CALL_ARGUMENT,
@@ -36,7 +37,7 @@ def test_decode_function():
     ]
 
     with pytest.raises(InputDataError):
-        decode_function(TETHER_ABI, "0xe8078d94")
+        decode_function(TETHER_ABI, "0x00000000")
 
 
 def test_decode_constructor():
@@ -72,3 +73,6 @@ def test_decode_constructor():
 
     with pytest.raises(InputDataError):
         decode_constructor(EXAMPLE_CONTRACT_ABI, EXAMPLE_CONSTRUCTOR_CALL_INPUT)
+
+    with pytest.raises(InputDataError):
+        get_constructor_type([{"type": "function"}])

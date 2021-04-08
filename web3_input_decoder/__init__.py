@@ -3,14 +3,13 @@ from typing import Any, List, Tuple, Union
 from eth_abi.abi import decode_abi
 from eth_utils import function_abi_to_4byte_selector
 
+from .exceptions import InputDataError
 from .utils import (
     detect_constructor_arguments,
     get_constructor_type,
     get_types_names,
     hex_to_bytes,
 )
-from .exceptions import InputDataError
-
 
 __all__ = (
     "decode_constructor",

@@ -1,6 +1,7 @@
 from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import encode_abi
+
 from .exceptions import InputDataError
 
 __all__ = (
@@ -15,7 +16,7 @@ def get_constructor_type(abi: List[dict]) -> dict:
     for type_def in abi:
         if type_def["type"] == "constructor":
             return type_def
-    raise NotImplementedError("constructor is not available")
+    raise InputDataError("Constructor is not found in ABI")
 
 
 def get_types_names(type_def: dict) -> Tuple[List[str], List[str]]:
