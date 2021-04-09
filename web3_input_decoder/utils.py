@@ -2,6 +2,8 @@ from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import encode_abi
 
+from .exceptions import InputDataError
+
 __all__ = (
     "get_constructor_type",
     "get_types_names",
@@ -14,7 +16,7 @@ def get_constructor_type(abi: List[dict]) -> dict:
     for type_def in abi:
         if type_def["type"] == "constructor":
             return type_def
-    raise NotImplementedError("constructor is not available")
+    raise InputDataError("Constructor is not found in ABI")
 
 
 def get_types_names(type_def: dict) -> Tuple[List[str], List[str]]:
@@ -42,7 +44,7 @@ def detect_constructor_arguments(
         if "int" in t:
             default_values.append(0)
         elif "[]" in t:
-            raise ValueError(
+            raise InputDataError(
                 "Unable to detect arguments including array. "
                 "Please provide the bytecode."
             )

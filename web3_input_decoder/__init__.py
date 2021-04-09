@@ -3,6 +3,7 @@ from typing import Any, List, Tuple, Union
 from eth_abi.abi import decode_abi
 from eth_utils import function_abi_to_4byte_selector
 
+from .exceptions import InputDataError
 from .utils import (
     detect_constructor_arguments,
     get_constructor_type,
@@ -76,6 +77,8 @@ def decode_function(
 
     tx_input = hex_to_bytes(tx_input)
     selector, args = tx_input[:4], tx_input[4:]
+    if selector not in selector_to_type_def:
+        raise InputDataError("Specified method not found in ABI")
 
     type_def = selector_to_type_def[selector]["inputs"]
     types, names = get_types_names(type_def)
