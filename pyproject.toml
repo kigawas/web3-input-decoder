@@ -38,7 +38,7 @@ ipython = {version = "^7.28", python = "^3.7"}
 mypy = "^0.910"
 # test
 pytest = "^6.2.5"
-pytest-cov = "^2.12.1"
+pytest-cov = "^3.0.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
