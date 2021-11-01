@@ -34,7 +34,7 @@ pysha3 = "^1.0.2"
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
 flake8 = "^4.0.1"
-ipython = {version = "^7.28", python = "^3.7"}
+ipython = {version = "^7.29", python = "^3.7"}
 mypy = "^0.910"
 # test
 pytest = "^6.2.5"
