@@ -1,7 +1,7 @@
 from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import decode_abi
-from eth_utils import function_abi_to_4byte_selector
+from eth_utils.abi import function_abi_to_4byte_selector
 
 from .exceptions import InputDataError
 from .utils import (
