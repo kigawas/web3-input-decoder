@@ -36,7 +36,7 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
 [('uint256', '_initialSupply', 100000000000),
  ('string', '_name', 'Tether USD'),
  ('string', '_symbol', 'USDT'),
- ('uint256', '_decimals', 6)]]
+ ('uint256', '_decimals', 6)]
 ```
 
 You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-quick-start).
