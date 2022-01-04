@@ -35,7 +35,7 @@ pysha3 = "^1.0.2"
 black = "^20.8b1"
 flake8 = "^4.0.1"
 ipython = {version = "^7.30", python = "^3.7"}
-mypy = "^0.920"
+mypy = "^0.930"
 # test
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
