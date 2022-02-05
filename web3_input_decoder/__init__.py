@@ -1,15 +1,6 @@
 from typing import Any, List, Tuple, Union
 
-from eth_abi.abi import decode_abi
-from eth_utils.abi import function_abi_to_4byte_selector
-
-from .exceptions import InputDataError
-from .utils import (
-    detect_constructor_arguments,
-    get_constructor_type,
-    get_types_names,
-    hex_to_bytes,
-)
+from .decoder import InputDecoder
 
 __all__ = (
     "decode_constructor",
@@ -38,18 +29,8 @@ def decode_constructor(
     List[Tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
-    type_def = get_constructor_type(abi)["inputs"]
-    types, names = get_types_names(type_def)
-    tx_input = hex_to_bytes(tx_input)
-
-    if bytecode is not None:
-        bytecode_len = len(hex_to_bytes(bytecode))
-        tx_input = tx_input[bytecode_len:]
-    else:
-        tx_input = detect_constructor_arguments(abi, tx_input)
-
-    values = decode_abi(types, tx_input)  # type: ignore
-    return [(t, n, v) for t, n, v in zip(types, names, values)]
+    decoder = InputDecoder(abi)
+    return decoder.decode_constructor(tx_input, bytecode).arguments
 
 
 def decode_function(
@@ -69,19 +50,5 @@ def decode_function(
     List[Tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
-    selector_to_type_def = {}
-    for type_def in abi:
-        if type_def["type"] == "function":
-            selector = function_abi_to_4byte_selector(type_def)
-            selector_to_type_def[selector] = type_def
-
-    tx_input = hex_to_bytes(tx_input)
-    selector, args = tx_input[:4], tx_input[4:]
-    if selector not in selector_to_type_def:
-        raise InputDataError("Specified method not found in ABI")
-
-    type_def = selector_to_type_def[selector]["inputs"]
-    types, names = get_types_names(type_def)
-
-    values = decode_abi(types, args)
-    return [(t, n, v) for t, n, v in zip(types, names, values)]
+    decoder = InputDecoder(abi)
+    return decoder.decode_function(tx_input).arguments

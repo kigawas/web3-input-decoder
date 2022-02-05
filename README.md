@@ -41,9 +41,25 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
 
 You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-quick-start).
 
+### Performance enhancement
+
+If you have lots of inputs in the same contract to decode, consider using [`Decoder`](web3_input_decoder/decoder.py#L22).
+
+```python
+>>> from web3_input_decoder.decoder import InputDecoder
+>>> decoder = InputDecoder(TETHER_ABI)
+>>> for _ in range(10000):
+>>>    decoder.decode_function(
+          (
+            "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be"
+            "0611000000000000000000000000000000000000000000000000000000000ecdd350"
+          ),
+        )
+```
+
 ## API
 
-- [`decode_constructor`](web3_input_decoder/__init__.py#L19)
+- [`decode_constructor`](web3_input_decoder/__init__.py#L11)
 
   ```python
   def decode_constructor(
@@ -63,7 +79,7 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
 
   - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
-- [`decode_function`](web3_input_decoder/__init__.py#L24)
+- [`decode_function`](web3_input_decoder/__init__.py#L36)
 
   ```python
   def decode_function(
@@ -84,6 +100,6 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
 
 Existing solutions are not satisfying to me, e.g.:
 
-1.  [web3py](https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
+1. [web3py](https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
 
-2.  [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not actively maintained and it contains several glitches.
+2. [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not actively maintained and it contains several glitches.

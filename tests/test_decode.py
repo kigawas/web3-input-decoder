@@ -1,6 +1,7 @@
 import pytest
 
 from web3_input_decoder import decode_constructor, decode_function
+from web3_input_decoder.decoder import InputDecoder
 from web3_input_decoder.exceptions import InputDataError
 from web3_input_decoder.utils import get_constructor_type
 
@@ -76,3 +77,19 @@ def test_decode_constructor():
 
     with pytest.raises(InputDataError):
         get_constructor_type([{"type": "function"}])
+
+
+def test_performance():
+    from pyinstrument import Profiler
+
+    p = Profiler()
+    with p:
+        decoder = InputDecoder(TETHER_ABI)
+        for _ in range(10000):
+            decoder.decode_function(
+                (
+                    "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be"
+                    "0611000000000000000000000000000000000000000000000000000000000ecdd350"
+                ),
+            )
+    p.print()
