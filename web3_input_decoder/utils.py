@@ -34,11 +34,10 @@ def hex_to_bytes(data: Union[str, bytes]) -> bytes:
 
 
 def detect_constructor_arguments(
-    abi: List[dict],
+    type_def: dict,
     tx_input_with_bytecode: Union[str, bytes],
 ) -> bytes:
-    type_def = get_constructor_type(abi)["inputs"]
-    types, _ = get_types_names(type_def)
+    types, _ = get_types_names(type_def["inputs"])
     default_values: List[Any] = []
     for t in types:
         if "int" in t:
