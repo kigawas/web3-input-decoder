@@ -5,6 +5,7 @@ from .decoder import InputDecoder
 __all__ = (
     "decode_constructor",
     "decode_function",
+    "InputDecoder",
 )
 
 
