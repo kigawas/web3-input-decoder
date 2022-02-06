@@ -1,7 +1,6 @@
 import pytest
 
-from web3_input_decoder import decode_constructor, decode_function
-from web3_input_decoder.decoder import InputDecoder
+from web3_input_decoder import InputDecoder, decode_constructor, decode_function
 from web3_input_decoder.exceptions import InputDataError
 from web3_input_decoder.utils import get_constructor_type
 

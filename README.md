@@ -46,7 +46,7 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
 If you have lots of inputs in the same contract to decode, consider using [`Decoder`](web3_input_decoder/decoder.py#L22).
 
 ```python
->>> from web3_input_decoder.decoder import InputDecoder
+>>> from web3_input_decoder import InputDecoder
 >>> decoder = InputDecoder(TETHER_ABI)
 >>> for _ in range(10000):
 >>>    decoder.decode_function(
