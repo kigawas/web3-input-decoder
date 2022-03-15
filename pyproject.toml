@@ -36,7 +36,7 @@ pysha3 = "^1.0.2"
 black = "^22.1.0"
 flake8 = "^4.0.1"
 ipython = {version = "^8.1.1", python = "^3.8"}
-mypy = "^0.940"
+mypy = "^0.941"
 
 # test
 pyinstrument = "^4.1.1"
