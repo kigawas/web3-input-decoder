@@ -20,7 +20,7 @@ keywords = [
   "ethereum",
   "web3",
 ]
-# package data
+# package data: PEP-561
 include = ["web3_input_decoder/py.typed"]
 
 [tool.poetry.dependencies]
@@ -28,7 +28,6 @@ python = "^3.7"
 
 # 3rd party
 eth-abi = "^3.0.0"
-eth-typing = {version = "^3.0.0", python = ">=3.7,<3.11"}
 eth-utils = "^2.0.0"
 pysha3 = "^1.0.2"
 
@@ -37,6 +36,9 @@ black = "^22.3.0"
 flake8 = "^4.0.1"
 ipython = {version = "^8.2.0", python = "^3.8"}
 mypy = "^0.942"
+
+# stubs
+eth-typing = "^3.0.0"
 
 # test
 pyinstrument = "^4.1.1"
