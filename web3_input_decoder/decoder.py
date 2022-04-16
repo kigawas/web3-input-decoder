@@ -31,18 +31,14 @@ class InputDecoder:
     def decode_function(self, tx_input: Union[str, bytes]):
         tx_input = hex_to_bytes(tx_input)
         selector, args = tx_input[:4], tx_input[4:]
-        if selector not in self._selector_to_type_def:
+        type_def = self._selector_to_type_def.get(selector, None)
+        if not type_def:
             raise InputDataError("Specified method not found in ABI")
-
-        type_def = self._selector_to_type_def[selector]
 
         types, names = get_types_names(type_def["inputs"])
         values = decode_abi(types, args)
 
-        return ContractCall(
-            type_def["name"],
-            [(t, n, v) for t, n, v in zip(types, names, values)],
-        )
+        return ContractCall(type_def["name"], list(zip(types, names, values)))
 
     def decode_constructor(
         self,
@@ -62,7 +58,4 @@ class InputDecoder:
         types, names = get_types_names(self._constructor_type_def["inputs"])
         values = decode_abi(types, tx_input)
 
-        return ContractCall(
-            "constructor",
-            [(t, n, v) for t, n, v in zip(types, names, values)],
-        )
+        return ContractCall("constructor", list(zip(types, names, values)))
