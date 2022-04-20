@@ -1,6 +1,7 @@
 from web3_input_decoder.utils import (
     detect_constructor_arguments,
     get_constructor_type,
+    get_selector_to_function_type,
     hex_to_bytes,
 )
 
@@ -21,3 +22,7 @@ def test_detect_arguments():
         constructor_type_def,
         hex_to_bytes(TETHER_CONSTRUCTOR_TX_INPUT),
     ) == hex_to_bytes(TETHER_CONSTRUCTOR_TX_INPUT)
+
+
+def test_selector_to_func_type():
+    assert get_selector_to_function_type(TETHER_ABI) != {}

@@ -1,11 +1,13 @@
 from typing import Any, List, Tuple, Union
 
 from eth_abi.abi import encode_abi
+from eth_utils.abi import function_abi_to_4byte_selector
 
 from .exceptions import InputDataError
 
 __all__ = (
     "get_constructor_type",
+    "get_selector_to_function_type",
     "get_types_names",
     "hex_to_bytes",
     "detect_constructor_arguments",
@@ -16,7 +18,16 @@ def get_constructor_type(abi: List[dict]) -> dict:
     for type_def in abi:
         if type_def["type"] == "constructor":
             return type_def
-    raise InputDataError("Constructor is not found in ABI")
+    return {}
+
+
+def get_selector_to_function_type(abi: List[dict]) -> dict:
+    type_defs = {}
+    for type_def in abi:
+        if type_def["type"] == "function":
+            selector = function_abi_to_4byte_selector(type_def)
+            type_defs[selector] = type_def
+    return type_defs
 
 
 def get_types_names(type_def: dict) -> Tuple[List[str], List[str]]:

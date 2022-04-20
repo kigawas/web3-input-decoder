@@ -65,7 +65,7 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
   def decode_constructor(
       abi: List[dict],
       tx_input: Union[str, bytes],
-      bytecode: Union[str, bytes] = None,
+      bytecode: Optional[Union[str, bytes]] = None,
   ) -> List[Tuple[str, str, Any]]
   ```
 

@@ -1,4 +1,4 @@
-from typing import Any, List, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 from .decoder import InputDecoder
 
@@ -12,7 +12,7 @@ __all__ = (
 def decode_constructor(
     abi: List[dict],
     tx_input: Union[str, bytes],
-    bytecode: Union[str, bytes] = None,
+    bytecode: Optional[Union[str, bytes]] = None,
 ) -> List[Tuple[str, str, Any]]:
     """Decode constructor transaction input
 
