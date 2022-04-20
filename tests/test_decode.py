@@ -8,6 +8,7 @@ from .data.caller import (
     CALLER_CONSTRUCTOR_CALL_INPUT,
     CALLER_CONTRACT_ABI,
 )
+from .data.defi import ROUTER_ABI, ROUTER_SWAP_CALL_INPUT
 from .data.example import (
     EXAMPLE_CONSTRUCTOR_CALL_ARGUMENT,
     EXAMPLE_CONSTRUCTOR_CALL_INPUT,
@@ -37,6 +38,20 @@ def test_decode_function():
 
     with pytest.raises(InputDataError, match="Specified method is not found in ABI"):
         decode_function(TETHER_ABI, "0x00000000")
+
+    assert decode_function(ROUTER_ABI, ROUTER_SWAP_CALL_INPUT) == [
+        ("uint256", "amountOutMin", 0),
+        (
+            "address[]",
+            "path",
+            (
+                "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+                "0x3df307e8e9a897da488211682430776cdf0f17cc",
+            ),
+        ),
+        ("address", "to", "0x6ef4158bf7304b966929945248927fb400ece8b5"),
+        ("uint256", "deadline", 1647035873),
+    ]
 
 
 def test_decode_constructor():
