@@ -2,7 +2,6 @@ import pytest
 
 from web3_input_decoder import InputDecoder, decode_constructor, decode_function
 from web3_input_decoder.exceptions import InputDataError
-from web3_input_decoder.utils import get_constructor_type
 
 from .data.caller import (
     CALLER_CONSTRUCTOR_CALL_ARGUMENT,
@@ -36,7 +35,7 @@ def test_decode_function():
         ("uint256", "_value", 248370000),
     ]
 
-    with pytest.raises(InputDataError):
+    with pytest.raises(InputDataError, match="Specified method is not found in ABI"):
         decode_function(TETHER_ABI, "0x00000000")
 
 
@@ -71,11 +70,16 @@ def test_decode_constructor():
         == CALLER_CONSTRUCTOR_CALL_ARGUMENT
     )
 
-    with pytest.raises(InputDataError):
+    with pytest.raises(
+        InputDataError, match="Unable to detect arguments including array"
+    ):
         decode_constructor(EXAMPLE_CONTRACT_ABI, EXAMPLE_CONSTRUCTOR_CALL_INPUT)
 
-    with pytest.raises(InputDataError):
-        get_constructor_type([{"type": "function"}])
+    with pytest.raises(InputDataError, match="Constructor is not found in ABI"):
+        decode_constructor([{"type": "function", "name": "test"}], "0x00")
+
+    with pytest.raises(InputDataError, match="Specified method is not found in ABI"):
+        decode_function([{"type": "function", "name": "test"}], "0x00")
 
 
 def test_performance():
@@ -85,10 +89,11 @@ def test_performance():
     with p:
         decoder = InputDecoder(TETHER_ABI)
         for _ in range(10000):
-            decoder.decode_function(
+            func_call = decoder.decode_function(
                 (
                     "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be"
                     "0611000000000000000000000000000000000000000000000000000000000ecdd350"
                 ),
             )
+            assert func_call.name == "transfer"
     p.print()
