@@ -34,7 +34,7 @@ pysha3 = "^1.0.2"
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
 flake8 = "^4.0.1"
-ipython = {version = "^8.3.0", python = "^3.8"}
+ipython = {version = "^8.4.0", python = "^3.8"}
 mypy = "^0.960"
 
 # stubs
