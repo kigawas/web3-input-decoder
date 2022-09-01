@@ -32,7 +32,7 @@ eth-utils = "^2.0.0"
 pysha3 = "^1.0.2"
 
 [tool.poetry.dev-dependencies]
-black = "^22.6.0"
+black = "^22.8.0"
 flake8 = "^5.0.4"
 ipython = {version = "^8.4.0", python = "^3.8"}
 mypy = "^0.971"
