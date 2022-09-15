@@ -38,7 +38,7 @@ ipython = {version = "^8.4.0", python = "^3.8"}
 mypy = "^0.971"
 
 # stubs
-eth-typing = "^3.0.0"
+eth-typing = "^3.2.0"
 
 # test
 pyinstrument = "^4.3.0"
