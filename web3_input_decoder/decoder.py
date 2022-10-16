@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, List, Optional, Tuple, Union
 
-from eth_abi.abi import decode_abi
+from eth_abi.abi import decode
 
 from .exceptions import InputDataError
 from .utils import (
@@ -32,7 +32,7 @@ class InputDecoder:
             raise InputDataError("Specified method is not found in ABI")
 
         types, names = get_types_names(type_def["inputs"])
-        values = decode_abi(types, args)
+        values = decode(types, args)
 
         return ContractCall(type_def["name"], list(zip(types, names, values)))
 
@@ -53,6 +53,6 @@ class InputDecoder:
             tx_input = detect_constructor_arguments(self._constructor_type, tx_input)
 
         types, names = get_types_names(self._constructor_type["inputs"])
-        values = decode_abi(types, tx_input)
+        values = decode(types, tx_input)
 
         return ContractCall("constructor", list(zip(types, names, values)))

@@ -1,6 +1,6 @@
 from typing import Any, List, Tuple, Union
 
-from eth_abi.abi import encode_abi
+from eth_abi.abi import encode
 from eth_utils.abi import function_abi_to_4byte_selector
 
 from .exceptions import InputDataError
@@ -67,5 +67,5 @@ def detect_constructor_arguments(
         else:
             raise NotImplementedError(f"Type {t} is not implemented yet")
 
-    default_args = encode_abi(types, default_values)
+    default_args = encode(types, default_values)
     return hex_to_bytes(tx_input_with_bytecode)[-len(default_args) :]
