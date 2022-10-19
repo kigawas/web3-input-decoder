@@ -9,6 +9,7 @@ __all__ = (
     "get_constructor_type",
     "get_selector_to_function_type",
     "get_types_names",
+    "expand_tuple_types",
     "hex_to_bytes",
     "detect_constructor_arguments",
 )
@@ -30,9 +31,26 @@ def get_selector_to_function_type(abi: List[dict]) -> dict:
     return type_defs
 
 
-def get_types_names(type_def: dict) -> Tuple[List[str], List[str]]:
-    types = [t["type"] for t in type_def]
-    names = [t["name"] for t in type_def]
+def expand_tuple_types(type_def: dict) -> str:
+    types = []
+    for comp in type_def["components"]:
+        if "components" not in comp:
+            types.append(comp["type"])
+        else:
+            types.append(expand_tuple_types(comp))
+    types_str = ",".join(types)
+    return f"({types_str})"
+
+
+def get_types_names(inputs: List[dict]) -> Tuple[List[str], List[str]]:
+    types = []
+    for t in inputs:
+        if t["type"] == "tuple":
+            types.append(expand_tuple_types(t))
+        else:
+            types.append(t["type"])
+
+    names = [t["name"] for t in inputs]
     return types, names
 
 
