@@ -51,8 +51,8 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 >>> for _ in range(10000):
 >>>    decoder.decode_function(
           (
-            "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be"
-            "0611000000000000000000000000000000000000000000000000000000000ecdd350"
+            "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3b"
+            "e0611000000000000000000000000000000000000000000000000000000000ecdd350"
           ),
         )
 ```
