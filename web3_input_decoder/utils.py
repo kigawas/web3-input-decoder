@@ -47,6 +47,8 @@ def get_types_names(inputs: List[dict]) -> Tuple[List[str], List[str]]:
     for t in inputs:
         if t["type"] == "tuple":
             types.append(expand_tuple_types(t))
+        elif t["type"] == "tuple[]":
+            types.append(f"{expand_tuple_types(t)}[]")
         else:
             types.append(t["type"])
 

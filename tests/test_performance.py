@@ -1,5 +1,5 @@
 import pytest
-from pyinstrument import Profiler
+from pyinstrument.profiler import Profiler
 
 from web3_input_decoder import InputDecoder
 
