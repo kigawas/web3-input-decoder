@@ -6,20 +6,33 @@ from web3_input_decoder.exceptions import InputDataError
 from .data.example import EXAMPLE_CONSTRUCTOR_CALL_INPUT, EXAMPLE_CONTRACT_ABI
 from .data.tether import TETHER_ABI
 
-
-def test_decode_constructor_error():
-    with pytest.raises(
-        InputDataError, match="Unable to detect arguments including array"
-    ):
-        decode_constructor(EXAMPLE_CONTRACT_ABI, EXAMPLE_CONSTRUCTOR_CALL_INPUT)
-
-    with pytest.raises(InputDataError, match="Constructor is not found in ABI"):
-        decode_constructor([{"type": "function", "name": "test"}], "0x00")
+INVALID_ABI = [{"type": "function", "name": "test"}]
+UNABLE_TO_DETECT = "Unable to detect arguments including array"
+CONSTRUCTOR_NOT_FOUND = "Constructor is not found in ABI"
+METHOD_NOT_FOUND = "Specified method is not found in ABI"
 
 
-def test_decode_function_error():
-    with pytest.raises(InputDataError, match="Specified method is not found in ABI"):
-        decode_function(TETHER_ABI, "0x00000000")
+@pytest.mark.parametrize(
+    "abi,input,match",
+    zip(
+        [EXAMPLE_CONTRACT_ABI, INVALID_ABI],
+        [EXAMPLE_CONSTRUCTOR_CALL_INPUT, "0x00"],
+        [UNABLE_TO_DETECT, CONSTRUCTOR_NOT_FOUND],
+    ),
+)
+def test_decode_constructor_error(abi, input, match):
+    with pytest.raises(InputDataError, match=match):
+        decode_constructor(abi, input)
 
-    with pytest.raises(InputDataError, match="Specified method is not found in ABI"):
-        decode_function([{"type": "function", "name": "test"}], "0x00")
+
+@pytest.mark.parametrize(
+    "abi,input,match",
+    zip(
+        [TETHER_ABI, INVALID_ABI],
+        ["0x00000000", "0x00"],
+        [METHOD_NOT_FOUND, METHOD_NOT_FOUND],
+    ),
+)
+def test_decode_function_error(abi, input, match):
+    with pytest.raises(InputDataError, match=match):
+        decode_function(abi, input)
