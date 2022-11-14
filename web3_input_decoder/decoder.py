@@ -3,7 +3,7 @@ from typing import Any, List, Optional, Tuple, Union
 
 from eth_abi.abi import decode
 
-from .exceptions import InputDataError
+from .exceptions import CONSTRUCTOR_NOT_FOUND, INVALID_INPUT, METHOD_NOT_FOUND
 from .utils import (
     detect_constructor_arguments,
     get_constructor_type,
@@ -29,10 +29,14 @@ class InputDecoder:
         selector, args = tx_input[:4], tx_input[4:]
         type_def = self._selector_to_func_type.get(selector, None)
         if not type_def:
-            raise InputDataError("Specified method is not found in ABI")
+            raise METHOD_NOT_FOUND
 
         types, names = get_types_names(type_def["inputs"])
-        values = decode(types, args)
+
+        try:
+            values = decode(types, args)
+        except OverflowError:
+            raise INVALID_INPUT
 
         return ContractCall(type_def["name"], list(zip(types, names, values)))
 
@@ -44,7 +48,7 @@ class InputDecoder:
         tx_input = hex_to_bytes(tx_input)
 
         if not self._constructor_type:
-            raise InputDataError("Constructor is not found in ABI")
+            raise CONSTRUCTOR_NOT_FOUND
 
         if bytecode is not None:
             bytecode_len = len(hex_to_bytes(bytecode))

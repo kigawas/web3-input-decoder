@@ -59,7 +59,7 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
 ## API
 
-- [`decode_constructor`](web3_input_decoder/__init__.py#L11)
+- [`decode_constructor`](web3_input_decoder/__init__.py#L12)
 
   ```python
   def decode_constructor(
@@ -79,7 +79,7 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
   - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
 
-- [`decode_function`](web3_input_decoder/__init__.py#L36)
+- [`decode_function`](web3_input_decoder/__init__.py#L37)
 
   ```python
   def decode_function(
