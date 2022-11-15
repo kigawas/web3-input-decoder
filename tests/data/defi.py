@@ -69,3 +69,22 @@ ROUTER_TOKENS_SWAP_CALL_ARGUMENT = [
     ("address", "to", "0x7c77b132a0cd0ad1c694ab8645affa26c2787d66"),
     ("uint256", "deadline", 1667934767),
 ]
+
+ROUTER_V2_ABI = [
+    {
+        "inputs": [
+            {"internalType": "uint256", "name": "amountIn", "type": "uint256"},
+            {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"},
+            {"internalType": "address[]", "name": "path", "type": "address[]"},
+            {"internalType": "address", "name": "to", "type": "address"},
+            {"internalType": "uint256", "name": "deadline", "type": "uint256"},
+        ],
+        "name": "swapExactTokensForTokens",
+        "outputs": [
+            {"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+    }
+]
+ROUTER_V2_TOKENS_SWAP_CALL_ERROR_INPUT = "0x38ed1739000200000000000007e3e9b4130e0a0000000000000000031c4b60a9d6004e6bbf3a9d39ef65058149a3fcd9e7b74f1d3a9907d000000000001db6bd61ebf584aa5501e4bd310ce3a2fa9b6b93734a9f62f11e39ccc6ad09c400000000000007e705ff73b7e00000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"

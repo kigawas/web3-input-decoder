@@ -3,7 +3,7 @@ from typing import Any, List, Tuple, Union
 from eth_abi.abi import encode
 from eth_utils.abi import function_abi_to_4byte_selector
 
-from .exceptions import InputDataError
+from .exceptions import UNABLE_TO_DETECT_CONSTRUCTOR_ARGUMENTS
 
 __all__ = (
     "get_constructor_type",
@@ -74,10 +74,7 @@ def detect_constructor_arguments(
         if "int" in t:
             default_values.append(0)
         elif "[]" in t:
-            raise InputDataError(
-                "Unable to detect arguments including array. "
-                "Please provide the bytecode."
-            )
+            raise UNABLE_TO_DETECT_CONSTRUCTOR_ARGUMENTS
         elif "string" == t:
             default_values.append("")
         elif "bool" == t:
