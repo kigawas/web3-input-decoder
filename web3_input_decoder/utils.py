@@ -76,7 +76,7 @@ def detect_constructor_arguments(
         elif "[]" in t:
             raise UNABLE_TO_DETECT_CONSTRUCTOR_ARGUMENTS
         elif "string" == t:
-            default_values.append("")
+            default_values.append("0")
         elif "bool" == t:
             default_values.append(False)
         elif "address" == t:
