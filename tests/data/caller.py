@@ -1,3 +1,5 @@
+# Made with Remix IDE
+
 """
 // SPDX-License-Identifier: GPL-3.0
 
@@ -12,7 +14,7 @@ contract Caller {
 }
 """
 
-CALLER_CONTRACT_ABI = [
+CALLER_ABI = [
     {
         "inputs": [{"internalType": "address", "name": "_addr", "type": "address"}],
         "stateMutability": "nonpayable",
@@ -21,7 +23,7 @@ CALLER_CONTRACT_ABI = [
 ]
 
 
-CALLER_CONSTRUCTOR_CALL_INPUT = (
+CALLER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE = (
     "0x0000000000000000000000000000000000000000000000000000000000000002"
 )
 

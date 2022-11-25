@@ -9,8 +9,8 @@ from web3_input_decoder.utils import (
 
 from .data.tether import (
     TETHER_ABI,
-    TETHER_CONSTRUCTOR_TX_INPUT,
-    TETHER_CONSTRUCTOR_TX_INPUT_WITH_BYTECODE,
+    TETHER_CONSTRUCTOR_CALL_INPUT,
+    TETHER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE,
 )
 
 
@@ -19,10 +19,14 @@ from .data.tether import (
     [
         (
             TETHER_ABI,
-            TETHER_CONSTRUCTOR_TX_INPUT_WITH_BYTECODE,
-            TETHER_CONSTRUCTOR_TX_INPUT,
+            TETHER_CONSTRUCTOR_CALL_INPUT,
+            TETHER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE,
         ),
-        (TETHER_ABI, TETHER_CONSTRUCTOR_TX_INPUT, TETHER_CONSTRUCTOR_TX_INPUT),
+        (
+            TETHER_ABI,
+            TETHER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE,
+            TETHER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE,
+        ),
     ],
 )
 def test_detect_arguments(abi, input_with_bytecode, input):
