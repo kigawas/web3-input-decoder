@@ -71,10 +71,10 @@ def detect_constructor_arguments(
     types, _ = get_types_names(type_def["inputs"])
     default_values: List[Any] = []
     for t in types:
-        if "int" in t:
-            default_values.append(0)
-        elif "[]" in t:
+        if t.endswith("[]"):
             raise UNABLE_TO_DETECT_CONSTRUCTOR_ARGUMENTS
+        elif "int" in t:
+            default_values.append(0)
         elif "string" == t:
             default_values.append("0")
         elif "bool" == t:
