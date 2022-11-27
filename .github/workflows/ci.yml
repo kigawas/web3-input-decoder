@@ -37,7 +37,7 @@ jobs:
         run: poetry run pytest -s --cov=web3_input_decoder tests --cov-report xml
 
       - name: Upload to codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - run: poetry build
