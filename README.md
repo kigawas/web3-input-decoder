@@ -1,7 +1,7 @@
 # web3-input-decoder
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6f10d5104ef4464797ee94b17c7b9371)](https://www.codacy.com/gh/kigawas/web3-input-decoder/dashboard)
-[![CI](https://img.shields.io/github/workflow/status/kigawas/web3-input-decoder/Build)](https://github.com/kigawas/web3-input-decoder/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/kigawas/web3-input-decoder/ci.yml)](https://github.com/kigawas/web3-input-decoder/actions)
 [![Codecov](https://img.shields.io/codecov/c/github/kigawas/web3-input-decoder.svg)](https://codecov.io/gh/kigawas/web3-input-decoder)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/web3-input-decoder.svg)](https://pypi.org/project/web3-input-decoder/)
 [![PyPI](https://img.shields.io/pypi/v/web3-input-decoder.svg)](https://pypi.org/project/web3-input-decoder/)
