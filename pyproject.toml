@@ -24,25 +24,25 @@ keywords = [
 include = ["web3_input_decoder/py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7.2"
 
 # 3rd party
-eth-abi = "^4.0.0b2"
+eth-abi = "^4.0.0"
 eth-utils = "^2.1.0"
-pycryptodome = "^3.15.0"
+pycryptodome = "^3.17.0"
 
 [tool.poetry.dev-dependencies]
 black = "^23.3.0"
 flake8 = {version = "^6.0.0", python = "^3.8.1"}
-ipython = {version = "^8.6.0", python = "^3.8"}
-mypy = "^1.1"
+ipython = {version = "^8.11.0", python = "^3.8"}
+mypy = "^1.2"
 
 # stubs
-eth-typing = "^3.2.0"
+eth-typing = "^3.3.0"
 
 # test
 pyinstrument = "^4.3.0"
-pytest = "^7.2.0"
+pytest = "^7.3.0"
 pytest-cov = "^4.0.0"
 
 [build-system]
