@@ -43,7 +43,7 @@ eth-typing = "^3.3.0"
 # test
 pyinstrument = "^4.5.0"
 pytest = "^7.3.0"
-pytest-cov = "^4.0.0"
+pytest-cov = "^4.1.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
