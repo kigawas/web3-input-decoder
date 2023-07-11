@@ -386,13 +386,13 @@ test = ["pytest (>=7.0.0)", "pytest-xdist (>=2.4.0)"]
 
 [[package]]
 name = "eth-utils"
-version = "2.1.1"
+version = "2.2.0"
 description = "eth-utils: Common utility functions for python code that interacts with Ethereum"
 optional = false
 python-versions = ">=3.7,<4"
 files = [
-    {file = "eth-utils-2.1.1.tar.gz", hash = "sha256:7cccfb0b0749431d0d001e327e9a7289bf07308316a73850ae3895020e5682f4"},
-    {file = "eth_utils-2.1.1-py3-none-any.whl", hash = "sha256:4938ab742f91cdf19bae024261af090664f63ccf83bdb1213e7146c14209e899"},
+    {file = "eth-utils-2.2.0.tar.gz", hash = "sha256:7f1a9e10400ee332432a778c321f446abaedb8f538df550e7c9964f446f7e265"},
+    {file = "eth_utils-2.2.0-py3-none-any.whl", hash = "sha256:d6e107d522f83adff31237a95bdcc329ac0819a3ac698fe43c8a56fd80813eab"},
 ]
 
 [package.dependencies]
