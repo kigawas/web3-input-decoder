@@ -28,6 +28,7 @@ from .data.tether import (
             TETHER_CONSTRUCTOR_CALL_INPUT_WITHOUT_BYTECODE,
         ),
     ],
+    ids=["with-bytecode", "without-bytecode"],
 )
 def test_detect_arguments(abi, input_with_bytecode, input):
     assert detect_constructor_arguments(
