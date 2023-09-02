@@ -30,7 +30,7 @@ def decode_constructor(
     List[Tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
-    decoder = InputDecoder(abi)
+    decoder = InputDecoder(abi)  # type:ignore[arg-type]
     return decoder.decode_constructor(tx_input, bytecode).arguments
 
 
@@ -51,5 +51,5 @@ def decode_function(
     List[Tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
-    decoder = InputDecoder(abi)
+    decoder = InputDecoder(abi)  # type:ignore[arg-type]
     return decoder.decode_function(tx_input).arguments

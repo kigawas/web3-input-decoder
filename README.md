@@ -43,7 +43,7 @@ You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-
 
 ### Performance enhancement
 
-If you have lots of inputs in the same contract to decode, consider using [`InputDecoder`](web3_input_decoder/decoder.py#L22).
+If you have lots of inputs in the same contract to decode, consider using [`InputDecoder`](web3_input_decoder/decoder.py#L26).
 
 ```python
 >>> from web3_input_decoder import InputDecoder

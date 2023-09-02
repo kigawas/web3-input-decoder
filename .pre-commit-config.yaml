@@ -5,13 +5,13 @@ repos:
       - id: isort
 
   - repo: https://github.com/ambv/black
-    rev: 23.3.0
+    rev: 23.7.0
     hooks:
       - id: black
-        exclude: venv
+        exclude: .venv
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.2.0
+    rev: v1.5.1
     hooks:
       - id: mypy
         entry: mypy web3_input_decoder/
@@ -24,7 +24,7 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
       - id: flake8
         # allow "imported but unused" for pre-commit, forbid it elsewhere e.g. in vscode

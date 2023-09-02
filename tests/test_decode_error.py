@@ -24,6 +24,7 @@ INVALID_INPUT = "Invalid input"
         (EXAMPLE_ABI, EXAMPLE_CONSTRUCTOR_CALL_INPUT, UNABLE_TO_DETECT),
         (STORAGE_ABI, STORAGE_CONSTRUCTOR_CALL_INPUT, UNABLE_TO_DETECT),
     ],
+    ids=["invalid", "example", "storage"],
 )
 def test_decode_constructor_error(abi, input, match):
     with pytest.raises(InputDataError, match=match):
@@ -37,6 +38,7 @@ def test_decode_constructor_error(abi, input, match):
         (INVALID_ABI, INVALID_CALL_INPUT, METHOD_NOT_FOUND),
         (ROUTER_V2_ABI, ROUTER_V2_TOKENS_SWAP_CALL_ERROR_INPUT, INVALID_INPUT),
     ],
+    ids=["tether", "invalid", "router-v2-tokens-swap"],
 )
 def test_decode_function_error(abi, input, match):
     with pytest.raises(InputDataError, match=match):

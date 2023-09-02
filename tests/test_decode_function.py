@@ -1,3 +1,5 @@
+import pytest
+
 from web3_input_decoder import decode_function
 
 from .data.defi import (
@@ -14,25 +16,24 @@ from .data.nft import (
 )
 from .data.tether import (
     TETHER_ABI,
-    THTHER_TRANSFER_CALL_ARGUMENT,
-    THTHER_TRANSFER_CALL_INPUT,
+    TETHER_TRANSFER_CALL_ARGUMENT,
+    TETHER_TRANSFER_CALL_INPUT,
 )
 
 
-def test_decode_function():
-    abis = [TETHER_ABI, ROUTER_ABI, ROUTER_ABI, SEAPORT_ABI]
-    inputs = [
-        THTHER_TRANSFER_CALL_INPUT,
-        ROUTER_SWAP_CALL_INPUT,
-        ROUTER_TOKENS_SWAP_CALL_INPUT,
-        SEAPORT_FULFILL_ORDER_CALL_INPUT,
-    ]
-    expected_args = [
-        THTHER_TRANSFER_CALL_ARGUMENT,
-        ROUTER_SWAP_CALL_ARGUMENT,
-        ROUTER_TOKENS_SWAP_CALL_ARGUMENT,
-        SEAPORT_FULFILL_ORDER_CALL_ARGUMENT,
-    ]
-
-    for abi, input, expected in zip(abis, inputs, expected_args):
-        assert decode_function(abi, input) == expected
+@pytest.mark.parametrize(
+    "abi,input,expected",
+    [
+        (TETHER_ABI, TETHER_TRANSFER_CALL_INPUT, TETHER_TRANSFER_CALL_ARGUMENT),
+        (ROUTER_ABI, ROUTER_SWAP_CALL_INPUT, ROUTER_SWAP_CALL_ARGUMENT),
+        (ROUTER_ABI, ROUTER_TOKENS_SWAP_CALL_INPUT, ROUTER_TOKENS_SWAP_CALL_ARGUMENT),
+        (
+            SEAPORT_ABI,
+            SEAPORT_FULFILL_ORDER_CALL_INPUT,
+            SEAPORT_FULFILL_ORDER_CALL_ARGUMENT,
+        ),
+    ],
+    ids=["tether", "router-swap", "router-tokens-swap", "seaport-fulfill-order"],
+)
+def test_decode_function(abi, input, expected):
+    assert decode_function(abi, input) == expected
