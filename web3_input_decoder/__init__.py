@@ -6,6 +6,7 @@ __all__ = (
     "decode_constructor",
     "decode_function",
     "InputDecoder",
+    "decode_function_name",
 )
 
 
@@ -53,3 +54,21 @@ def decode_function(
     """
     decoder = InputDecoder(abi)  # type:ignore[arg-type]
     return decoder.decode_function(tx_input).arguments
+def decode_function_name(
+    abi: List[dict], tx_input: Union[str, bytes]
+) -> str:
+    """Decode function name
+
+    Parameters
+    ----------
+    abi: List[dict]
+        Contract ABI
+    tx_input: Union[str, bytes]
+        Transaction input to decode
+
+    Returns
+    -------
+    Name of the function
+    """
+    decoder = InputDecoder(abi)  # type:ignore[arg-type]
+    return decoder.decode_function_name(tx_input)

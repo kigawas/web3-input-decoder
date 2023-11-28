@@ -53,6 +53,14 @@ class InputDecoder:
             raise METHOD_NOT_FOUND
 
         return ContractCall.decode(type_def["name"], type_def["inputs"], func_args)
+    def decode_function_name(self, tx_input: Union[str, bytes]):
+        tx_input = hex_to_bytes(tx_input)
+        selector, func_args = tx_input[:4], tx_input[4:]
+        type_def = self._selector_to_func_type.get(selector, None)
+        if not type_def:
+            raise METHOD_NOT_FOUND
+
+        return type_def['name']
 
     def decode_constructor(
         self,
