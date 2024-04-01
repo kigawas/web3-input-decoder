@@ -27,7 +27,7 @@ include = ["web3_input_decoder/py.typed"]
 python = "^3.8"
 
 # 3rd party
-eth-abi = "^4.2.1"
+eth-abi = ">=4.2.1,<6.0.0"
 eth-utils = "^4.0.0"
 pycryptodome = "^3.17.0"
 
