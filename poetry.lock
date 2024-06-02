@@ -269,13 +269,13 @@ test = ["pytest (>=7.0.0)", "pytest-xdist (>=2.4.0)"]
 
 [[package]]
 name = "eth-typing"
-version = "4.2.2"
+version = "4.2.3"
 description = "eth-typing: Common type annotations for ethereum python packages"
 optional = false
 python-versions = "<4,>=3.8"
 files = [
-    {file = "eth_typing-4.2.2-py3-none-any.whl", hash = "sha256:2d23c44b78b1740ee881aa5c440a05a5e311ca44d1defa18a334e733df46ff3f"},
-    {file = "eth_typing-4.2.2.tar.gz", hash = "sha256:051ab9783e350668487ffc635b19666e7ca4d6c7e572800ed3961cbe0a937772"},
+    {file = "eth_typing-4.2.3-py3-none-any.whl", hash = "sha256:b2df49fa89d2e85f2cc3fb1c903b0cd183d524f7a045e3db8cc720cf41adcd3d"},
+    {file = "eth_typing-4.2.3.tar.gz", hash = "sha256:8ee3ae7d4136d14fcb955c34f9dbef8e52170984d4dc68c0ab0d61621eab29d8"},
 ]
 
 [package.extras]
