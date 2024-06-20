@@ -78,6 +78,8 @@ def __expand_tuple_types(input: Input) -> str:
     for comp in input["components"]:
         if "components" not in comp:
             types.append(comp["type"])
+        elif comp["type"] == "tuple[]":
+            types.append(f"{__expand_tuple_types(comp)}[]")
         else:
             types.append(__expand_tuple_types(comp))
     types_str = ",".join(types)

@@ -34,7 +34,7 @@ class ContractCall:
         try:
             types, names, values = decode_input(inputs, func_args)
             return cls(func_name, list(zip(types, names, values)))
-        except OverflowError:
+        except (DecodingError, OverflowError):
             raise INVALID_INPUT
 
 

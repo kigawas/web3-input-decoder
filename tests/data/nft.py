@@ -118,7 +118,7 @@ SEAPORT_FULFILL_ORDER_CALL_INPUT = (
 )
 SEAPORT_FULFILL_ORDER_CALL_ARGUMENT = [
     (
-        "(address,uint256,uint256,address,address,address,uint256,uint256,uint8,uint256,uint256,bytes32,uint256,bytes32,bytes32,uint256,(uint256,address),bytes)",
+        "(address,uint256,uint256,address,address,address,uint256,uint256,uint8,uint256,uint256,bytes32,uint256,bytes32,bytes32,uint256,(uint256,address)[],bytes)",
         "parameters",
         (
             "0x0000000000000000000000000000000000000000",
@@ -137,8 +137,13 @@ SEAPORT_FULFILL_ORDER_CALL_ARGUMENT = [
             b"\x00\x00\x00{\x02#\x00\x91\xa7\xed\x01#\x00r\xf7\x00j\x00M`\xa8\xd4\xe7\x1dY\x9b\x81\x04%\x0f\x00\x00",
             b"\x00\x00\x00{\x02#\x00\x91\xa7\xed\x01#\x00r\xf7\x00j\x00M`\xa8\xd4\xe7\x1dY\x9b\x81\x04%\x0f\x00\x00",
             2,
-            (576, "0x00000000000000000000000000000000000002e0"),
-            b"",
+            (
+                (1800000000000000000, "0x0000a26b00c1f0df003000390027140000faa719"),
+                (1800000000000000000, "0xa858ddc0445d8131dac4d1de01f834ffcba52ef1"),
+            ),
+            bytes.fromhex(
+                "046bd0fda5b934a96ef4700da1b64e03e7451e6a6ee45a5004b93823ff3baae34b9f1c4f667781b5fedd27dc67339d4fd3e4ae2a873b315090e6312853732f9a1c"
+            ),
         ),
     )
 ]
