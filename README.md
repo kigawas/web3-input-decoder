@@ -100,5 +100,5 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
 Existing solutions are not satisfying to me, e.g.:
 
-1. [web3py](https://web3py.readthedocs.io/en/stable/contracts.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
-2. [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not actively maintained and it contains several glitches.
+1. [web3py](https://web3py.readthedocs.io/en/latest/web3.contract.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
+2. [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not maintained and it contains several glitches.

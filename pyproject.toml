@@ -29,15 +29,15 @@ python = "^3.8"
 # 3rd party
 eth-abi = "^5.1.0"
 eth-utils = ">=2.0.0"
-pycryptodome = "^3.17.0"
+pycryptodome = "^3.18.0"
 
 [tool.poetry.group.dev.dependencies]
-ipython = {version = "^8.22.2", python = "^3.10"}
-mypy = "^1.10"
-ruff = ">=0.3.5,<0.5.0"
+ipython = {version = "8.26.0", python = "^3.10"}
+mypy = "^1.11"
+ruff = "^0.6.0"
 
 # stubs
-eth-typing = "^4.0.0"
+eth-typing = "^5.0.0"
 
 [tool.poetry.group.test.dependencies]
 pyinstrument = "^4.5.0"
