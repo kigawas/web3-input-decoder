@@ -28,7 +28,7 @@ python = "^3.8"
 
 # 3rd party
 eth-abi = "^5.1.0"
-eth-utils = "^4.0.0"
+eth-utils = ">=2.0.0"
 pycryptodome = "^3.17.0"
 
 [tool.poetry.group.dev.dependencies]
