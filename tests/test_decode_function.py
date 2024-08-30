@@ -14,6 +14,11 @@ from .data.nft import (
     SEAPORT_FULFILL_ORDER_CALL_ARGUMENT,
     SEAPORT_FULFILL_ORDER_CALL_INPUT,
 )
+from .data.storage import (
+    STORAGE_ABI,
+    STORAGE_FUNCTION_CALL_ARGUMENT,
+    STORAGE_FUNCTION_CALL_INPUT,
+)
 from .data.tether import (
     TETHER_ABI,
     TETHER_TRANSFER_CALL_ARGUMENT,
@@ -24,6 +29,7 @@ from .data.tether import (
 @pytest.mark.parametrize(
     "abi,input,expected",
     [
+        (STORAGE_ABI, STORAGE_FUNCTION_CALL_INPUT, STORAGE_FUNCTION_CALL_ARGUMENT),
         (TETHER_ABI, TETHER_TRANSFER_CALL_INPUT, TETHER_TRANSFER_CALL_ARGUMENT),
         (ROUTER_ABI, ROUTER_SWAP_CALL_INPUT, ROUTER_SWAP_CALL_ARGUMENT),
         (ROUTER_ABI, ROUTER_TOKENS_SWAP_CALL_INPUT, ROUTER_TOKENS_SWAP_CALL_ARGUMENT),
@@ -33,7 +39,13 @@ from .data.tether import (
             SEAPORT_FULFILL_ORDER_CALL_ARGUMENT,
         ),
     ],
-    ids=["tether", "router-swap", "router-tokens-swap", "seaport-fulfill-order"],
+    ids=[
+        "storage",
+        "tether",
+        "router-swap",
+        "router-tokens-swap",
+        "seaport-fulfill-order",
+    ],
 )
 def test_decode_function(abi, input, expected):
     assert decode_function(abi, input) == expected
