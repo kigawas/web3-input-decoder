@@ -47,6 +47,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+
 # Translations
 *.mo
 *.pot
@@ -100,8 +101,9 @@ venv.bak/
 # mkdocs documentation
 /site
 
-# mypy
+# dev
 .mypy_cache/
+.ruff_cache/
 
 .vscode/
 .DS_Store

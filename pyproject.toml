@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "web3-input-decoder"
-version = "0.1.13"
+version = "0.1.14"
 # doc
 authors = ["Weiliang Li <to.be.impressive@gmail.com>"]
 description = "A simple offline web3 transaction input decoder for functions and constructors"
@@ -27,27 +27,34 @@ include = ["web3_input_decoder/py.typed"]
 python = "^3.8"
 
 # 3rd party
-eth-abi = "^5.1.0"
+eth-abi = "^5.0.1"
 eth-utils = ">=2.0.0"
-pycryptodome = "^3.18.0"
+pycryptodome = ">=3.18.0"
 
 [tool.poetry.group.dev.dependencies]
-ipython = {version = "8.26.0", python = "^3.10"}
-mypy = "^1.11"
-ruff = "^0.6.0"
+ipython = {version = "^8.29.0", python = "^3.10"}
+mypy = "^1.13.0"
+ruff = "^0.7.4"
 
 # stubs
-eth-typing = "^5.0.0"
+eth-typing = "^5.0.1"
 
 [tool.poetry.group.test.dependencies]
-pyinstrument = "^4.5.0"
-pytest = "^8.1.0"
-pytest-cov = "^5.0.0"
+pyinstrument = "^5.0.0"
+pytest = "^8.3.3"
+pytest-cov = {version = "^6.0.0", python = "^3.9"}
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
 
-[tool.isort]
-multi_line_output = 3
-profile = "black"
+[tool.pytest.ini_options]
+addopts = "--cov=web3_input_decoder"
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "@abstract",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.",
+]
