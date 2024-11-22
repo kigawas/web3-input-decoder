@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13.0-rc.1"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
@@ -30,10 +30,11 @@ jobs:
       - run: poetry install --with test
 
       - name: Run test
-        run: poetry run pytest -s --cov=web3_input_decoder tests --cov-report xml
+        run: poetry run pytest -s tests --cov-report xml
 
       - name: Upload to codecov
         uses: codecov/codecov-action@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
         with:
             token: ${{ secrets.CODECOV_TOKEN }}
 
