@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from web3_input_decoder.types import Abi
+
 # Made with Remix IDE
 
 """
@@ -23,7 +27,7 @@ contract Storage {
 }
 """
 
-STORAGE_ABI = [
+STORAGE_ABI: Abi = [
     {
         "inputs": [{"internalType": "uint256[]", "name": "_nums", "type": "uint256[]"}],
         "stateMutability": "nonpayable",

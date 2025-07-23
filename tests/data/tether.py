@@ -1,4 +1,8 @@
-TETHER_ABI = [
+from __future__ import annotations
+
+from web3_input_decoder.types import Abi
+
+TETHER_ABI: Abi = [
     {
         "constant": True,
         "inputs": [],

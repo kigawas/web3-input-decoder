@@ -63,10 +63,10 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
   ```python
   def decode_constructor(
-      abi: List[dict],
+      abi: list[dict],
       tx_input: Union[str, bytes],
       bytecode: Optional[Union[str, bytes]] = None,
-  ) -> List[Tuple[str, str, Any]]
+  ) -> list[tuple[str, str, Any]]
   ```
 
   **Parameters**:
@@ -77,14 +77,14 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
   **Returns**:
 
-  - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
+  - `list[tuple[str, str, Any]]`: Decoded type-name-value tuples
 
 - [`decode_function`](web3_input_decoder/__init__.py#L37)
 
   ```python
   def decode_function(
-      abi: List[dict], tx_input: Union[str, bytes]
-  ) -> List[Tuple[str, str, Any]]
+      abi: list[dict], tx_input: Union[str, bytes]
+  ) -> list[tuple[str, str, Any]]
   ```
 
   **Parameters**:
@@ -94,7 +94,7 @@ If you have lots of inputs in the same contract to decode, consider using [`Inpu
 
   **Returns**:
 
-  - `List[Tuple[str, str, Any]]`: Decoded type-name-value tuples
+  - `list[tuple[str, str, Any]]`: Decoded type-name-value tuples
 
 ## Rationale
 

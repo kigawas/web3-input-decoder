@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
 from eth_abi.exceptions import DecodingError
 
@@ -27,10 +27,10 @@ __all__ = (
 @dataclass(frozen=True)
 class ContractCall:
     name: str
-    arguments: List[Tuple[str, str, Any]]
+    arguments: list[tuple[str, str, Any]]
 
     @classmethod
-    def decode(cls, func_name: str, inputs: List[Input], func_args: bytes):
+    def decode(cls, func_name: str, inputs: list[Input], func_args: bytes):
         try:
             types, names, values = decode_input(inputs, func_args)
             return cls(func_name, list(zip(types, names, values)))

@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from web3_input_decoder.types import Abi
+
 # Made with Remix IDE
 """
 // SPDX-License-Identifier: GPL-3.0
@@ -26,7 +30,7 @@ contract Storage {
 }
 """
 
-EXAMPLE_ABI = [
+EXAMPLE_ABI: Abi = [
     {
         "inputs": [
             {"internalType": "uint256", "name": "num", "type": "uint256"},

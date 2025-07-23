@@ -1,20 +1,22 @@
-from typing import Any, Dict, List, Optional, Tuple
+from __future__ import annotations
+
+from typing import Any, Optional
 
 from eth_abi.abi import decode, encode
 from eth_utils.abi import function_abi_to_4byte_selector
 
 from ..exceptions import UNABLE_TO_DETECT_CONSTRUCTOR_ARGUMENTS
-from ..types import Abi, Input, TypeDef
+from ..types import Abi, ConstructorType, FunctionType, Input
 
 
-def get_constructor_type(abi: Abi) -> Optional[TypeDef]:
+def get_constructor_type(abi: Abi) -> Optional[ConstructorType]:
     for type_def in abi:
         if type_def["type"] == "constructor":
             return type_def
     return None
 
 
-def get_selector_to_function_type(abi: Abi) -> Dict[bytes, TypeDef]:
+def get_selector_to_function_type(abi: Abi) -> dict[bytes, FunctionType]:
     type_defs = {}
     for type_def in abi:
         if type_def["type"] == "function":
@@ -23,7 +25,7 @@ def get_selector_to_function_type(abi: Abi) -> Dict[bytes, TypeDef]:
     return type_defs
 
 
-def detect_constructor_arguments(type_def: TypeDef, data_with_bytecode: bytes):
+def detect_constructor_arguments(type_def: ConstructorType, data_with_bytecode: bytes):
     inputs = type_def["inputs"]  # TODO: remove this from 0.2.0
     has_array, default_args = get_default_arguments(inputs)
     if has_array:
@@ -31,9 +33,9 @@ def detect_constructor_arguments(type_def: TypeDef, data_with_bytecode: bytes):
     return data_with_bytecode[-len(default_args) :]
 
 
-def get_default_arguments(inputs: List[Input]):
+def get_default_arguments(inputs: list[Input]):
     types, _ = get_types_names(inputs)
-    default_values: List[Any] = []
+    default_values: list[Any] = []
     has_array = False
     for t in types:
         if t.endswith("[]"):
@@ -53,13 +55,13 @@ def get_default_arguments(inputs: List[Input]):
     return has_array, encode(types, default_values)
 
 
-def decode_input(inputs: List[Input], func_args: bytes):
+def decode_input(inputs: list[Input], func_args: bytes):
     types, names = get_types_names(inputs)
     values = decode(types, func_args)
     return types, names, values
 
 
-def get_types_names(inputs: List[Input]) -> Tuple[List[str], List[str]]:
+def get_types_names(inputs: list[Input]) -> tuple[list[str], list[str]]:
     types = []
     for t in inputs:
         if t["type"] == "tuple":
@@ -74,13 +76,16 @@ def get_types_names(inputs: List[Input]) -> Tuple[List[str], List[str]]:
 
 
 def __expand_tuple_types(input: Input) -> str:
+    if "components" not in input:
+        # impossible, should have failed earlier in eth-utils
+        raise NotImplementedError
     types = []
-    for comp in input["components"]:
-        if "components" not in comp:
-            types.append(comp["type"])
-        elif comp["type"] == "tuple[]":
-            types.append(f"{__expand_tuple_types(comp)}[]")
+    for component in input["components"]:
+        if "components" not in component:
+            types.append(component["type"])
+        elif component["type"] == "tuple[]":
+            types.append(f"{__expand_tuple_types(component)}[]")
         else:
-            types.append(__expand_tuple_types(comp))
+            types.append(__expand_tuple_types(component))
     types_str = ",".join(types)
     return f"({types_str})"
