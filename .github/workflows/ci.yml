@@ -33,7 +33,7 @@ jobs:
         run: poetry run pytest -s tests --cov-report xml
 
       - name: Upload to codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
         with:
             token: ${{ secrets.CODECOV_TOKEN }}
