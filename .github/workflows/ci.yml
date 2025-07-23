@@ -29,6 +29,9 @@ jobs:
 
       - run: poetry install --with test
 
+      - name: Lint
+        run: poetry run ruff check --fix && poetry run ruff format && poetry run ty check
+
       - name: Run test
         run: poetry run pytest -s tests --cov-report xml
 

@@ -31,8 +31,10 @@ from .data.tether import (
     ids=["with-bytecode", "without-bytecode"],
 )
 def test_detect_arguments(abi, input_with_bytecode, input):
+    type_def = get_constructor_type(abi)
+    assert type_def is not None
     assert detect_constructor_arguments(
-        get_constructor_type(abi), hex_to_bytes(input_with_bytecode)
+        type_def, hex_to_bytes(input_with_bytecode)
     ) == hex_to_bytes(input)
 
 
