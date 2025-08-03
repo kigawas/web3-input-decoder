@@ -1,5 +1,9 @@
+from __future__ import annotations
+
+from web3_input_decoder.types import Abi
+
 # Contract: 0x00000000006c3852cbef3e08e8df289169ede581
-SEAPORT_ABI = [
+SEAPORT_ABI: Abi = [
     {
         "inputs": [
             {

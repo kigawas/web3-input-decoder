@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from web3_input_decoder.types import Abi
+
 # Made with Remix IDE
 
 """
@@ -14,7 +18,7 @@ contract Caller {
 }
 """
 
-CALLER_ABI = [
+CALLER_ABI: Abi = [
     {
         "inputs": [{"internalType": "address", "name": "_addr", "type": "address"}],
         "stateMutability": "nonpayable",

@@ -1,4 +1,4 @@
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
 from .decoder import InputDecoder
 
@@ -10,15 +10,15 @@ __all__ = (
 
 
 def decode_constructor(
-    abi: List[dict],
+    abi: list[dict],
     tx_input: Union[str, bytes],
     bytecode: Optional[Union[str, bytes]] = None,
-) -> List[Tuple[str, str, Any]]:
+) -> list[tuple[str, str, Any]]:
     """Decode constructor transaction input
 
     Parameters
     ----------
-    abi: List[dict]
+    abi: list[dict]
         Contract ABI
     tx_input: Union[str, bytes]
         Transaction input to decode, with or without deployed contract bytecode
@@ -27,7 +27,7 @@ def decode_constructor(
 
     Returns
     -------
-    List[Tuple[str, str, Any]]
+    list[tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
     decoder = InputDecoder(abi)  # type:ignore[arg-type]
@@ -35,20 +35,20 @@ def decode_constructor(
 
 
 def decode_function(
-    abi: List[dict], tx_input: Union[str, bytes]
-) -> List[Tuple[str, str, Any]]:
+    abi: list[dict], tx_input: Union[str, bytes]
+) -> list[tuple[str, str, Any]]:
     """Decode function transaction input
 
     Parameters
     ----------
-    abi: List[dict]
+    abi: list[dict]
         Contract ABI
     tx_input: Union[str, bytes]
         Transaction input to decode
 
     Returns
     -------
-    List[Tuple[str, str, Any]]
+    list[tuple[str, str, Any]]
         Decoded type-name-value tuples
     """
     decoder = InputDecoder(abi)  # type:ignore[arg-type]
