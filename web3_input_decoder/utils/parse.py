@@ -12,7 +12,7 @@ from ..types import Abi, ConstructorType, FunctionType, Input
 def get_constructor_type(abi: Abi) -> Optional[ConstructorType]:
     for type_def in abi:
         if type_def["type"] == "constructor":
-            return type_def
+            return type_def  # type:ignore[return-value]
     return None
 
 
