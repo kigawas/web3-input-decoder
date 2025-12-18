@@ -23,7 +23,7 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
 >>> import json
 >>> import urllib.request
 >>> from web3_input_decoder import decode_constructor, decode_function
->>> f = urllib.request.urlopen("https://api.etherscan.io/api?module=contract&action=getabi&address=0xdac17f958d2ee523a2206206994597c13d831ec7")
+>>> f = urllib.request.urlopen("https://api.etherscan.io/v2/api?chainid=1&apikey=[YOUR-ETHERSCAN-V2-API-KEY]&module=contract&action=getabi&address=0xdac17f958d2ee523a2206206994597c13d831ec7")
 >>> TETHER_ABI = json.loads(json.load(f)["result"])
 >>> decode_function(
         TETHER_ABI, "0xa9059cbb000000000000000000000000f050227be1a7ce587aa83d5013f900dbc3be0611000000000000000000000000000000000000000000000000000000000ecdd350",
@@ -39,7 +39,7 @@ Let's take a [USDT transfer transaction](https://etherscan.io/tx/0x0331fdfa070ee
  ('uint256', '_decimals', 6)]
 ```
 
-You can also play with it [here](https://replit.com/@kigawas/Web3-input-decoder-quick-start).
+You can also play with it on [Replit](https://replit.com/@kigawas/Web3-input-decoder-quick-start).
 
 ### Performance enhancement
 
@@ -102,3 +102,7 @@ Existing solutions are not satisfying to me, e.g.:
 
 1. [web3py](https://web3py.readthedocs.io/en/latest/web3.contract.html#web3.contract.Contract.decode_function_input) can only decode function calls and it's necessary to be online to set up a provider first.
 2. [ethereum-input-decoder](https://github.com/tintinweb/ethereum-input-decoder) is not maintained and it contains several glitches.
+
+## Changelog
+
+See [Releases](https://github.com/kigawas/web3-input-decoder/releases).
