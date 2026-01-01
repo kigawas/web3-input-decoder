@@ -35,7 +35,7 @@ pycryptodome = ">=3.18.0"
 [tool.poetry.group.dev.dependencies]
 ipython = {version = "^9.8.0", python = "^3.11"}
 ruff = "^0.14.9"
-ty = "^0.0.1a33"
+ty = ">=0.0.1,<0.0.9"
 
 # stubs
 eth-typing = "^5.2.1"
